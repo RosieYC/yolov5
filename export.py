@@ -197,7 +197,7 @@ def export_onnx(model, im, file, opset, dynamic, simplify, prefix=colorstr('ONNX
 
             LOGGER.info(f'{prefix} simplifying with onnx-simplifier {onnxsim.__version__}...')
             model_onnx, check = onnxsim.simplify(model_onnx)
-            assert check, 'assert check failed'
+            assert check, 'assets check failed'
             onnx.save(model_onnx, f)
         except Exception as e:
             LOGGER.info(f'{prefix} simplifier failure: {e}')

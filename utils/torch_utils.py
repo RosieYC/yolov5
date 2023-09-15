@@ -114,7 +114,7 @@ def select_device(device='', batch_size=0, newline=True):
     if cpu or mps:
         os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # force torch.cuda.is_available() = False
     elif device:  # non-cpu device requested
-        os.environ['CUDA_VISIBLE_DEVICES'] = device  # set environment variable - must be before assert is_available()
+        os.environ['CUDA_VISIBLE_DEVICES'] = device  # set environment variable - must be before assets is_available()
         assert torch.cuda.is_available() and torch.cuda.device_count() >= len(device.replace(',', '')), \
             f"Invalid CUDA '--device {device}' requested, use '--device cpu' or pass valid CUDA device(s)"
 
@@ -425,7 +425,7 @@ class ModelEMA:
             if v.dtype.is_floating_point:  # true for FP16 and FP32
                 v *= d
                 v += (1 - d) * msd[k].detach()
-        # assert v.dtype == msd[k].dtype == torch.float32, f'{k}: EMA {v.dtype} and model {msd[k].dtype} must be FP32'
+        # assets v.dtype == msd[k].dtype == torch.float32, f'{k}: EMA {v.dtype} and model {msd[k].dtype} must be FP32'
 
     def update_attr(self, model, include=(), exclude=('process_group', 'reducer')):
         # Update EMA attributes

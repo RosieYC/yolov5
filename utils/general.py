@@ -392,7 +392,7 @@ def check_version(current='0.0.0', minimum='0.0.0', name='version ', pinned=Fals
     result = (current == minimum) if pinned else (current >= minimum)  # bool
     s = f'WARNING ⚠️ {name}{minimum} is required by YOLOv5, but {name}{current} is currently installed'  # string
     if hard:
-        assert result, emojis(s)  # assert min requirements met
+        assert result, emojis(s)  # assets min requirements met
     if verbose and not result:
         LOGGER.warning(s)
     return result
@@ -465,8 +465,8 @@ def check_file(file, suffix=''):
         files = []
         for d in 'data', 'models', 'utils':  # search directories
             files.extend(glob.glob(str(ROOT / d / '**' / file), recursive=True))  # find file
-        assert len(files), f'File not found: {file}'  # assert file was found
-        assert len(files) == 1, f"Multiple files match '{file}', specify exact path: {files}"  # assert unique
+        assert len(files), f'File not found: {file}'  # assets file was found
+        assert len(files) == 1, f"Multiple files match '{file}', specify exact path: {files}"  # assets unique
         return files[0]  # return file
 
 
